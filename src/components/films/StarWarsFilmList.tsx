@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { AllFilms, AllFilmVariables } from '../schema/films';
+import { AllFilms, AllFilmVariables } from '../../schema/films';
 const allSWFilms = gql`
     {
         allFilms {

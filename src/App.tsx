@@ -5,6 +5,7 @@ import './App.css';
 import { NavFooter } from './components/global/NavFooter';
 import { NavHeader } from './components/global/NavHeader';
 import { SWPagePath } from './consts/PagePath';
+import { RootPage } from './pages';
 import { StarWarsCharactersPage } from './pages/characters';
 import { StarWarsFilmsPage } from './pages/films';
 import { StarWarsVehicles } from './pages/vehicles';
@@ -22,7 +23,7 @@ function App() {
                 <NavHeader />
                 <Switch>
                     <Route exact path={Root}>
-                        <h1>Welcome to Muga's Star Wars page!!</h1>
+                        <RootPage />
                     </Route>
                     <Route path={Films}>
                         <StarWarsFilmsPage />

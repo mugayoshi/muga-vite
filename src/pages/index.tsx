@@ -1,13 +1,12 @@
 import React from 'react';
 import { BaseContainer } from '../component/base/BaseContainer';
-import { SWFilms } from '../components/films/StarWarsFilmList';
 
-export const StarWarsFilmsPage: React.VFC = () => {
+export const RootPage: React.VFC = () => {
     return (
-        <>
+        <div className='bg-blue-300'>
             <BaseContainer>
-                <SWFilms />
+                <h1>Welcome to Muga's Star Wars page!!</h1>
             </BaseContainer>
-        </>
+        </div>
     );
 };
