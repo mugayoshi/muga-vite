@@ -1,11 +1,13 @@
-import {
-    ApolloClient,
-    ApolloProvider,
-    InMemoryCache,
-} from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { SWFilms } from './components/star-wars-films';
+import { NavFooter } from './components/global/NavFooter';
+import { NavHeader } from './components/global/NavHeader';
+import { SWPagePath } from './consts/PagePath';
+import { StarWarsCharactersPage } from './pages/characters';
+import { StarWarsFilmsPage } from './pages/films';
+import { StarWarsVehicles } from './pages/vehicles';
 
 const clientSW = new ApolloClient({
     uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
@@ -13,9 +15,27 @@ const clientSW = new ApolloClient({
 });
 
 function App() {
+    const {Root, Films, Characters, Vehicles} = SWPagePath;
     return (
         <ApolloProvider client={clientSW}>
-            <SWFilms />
+            <BrowserRouter>
+                <NavHeader />
+                <Switch>
+                    <Route exact path={Root}>
+                        <h1>Welcome to Muga's Star Wars page!!</h1>
+                    </Route>
+                    <Route path={Films}>
+                        <StarWarsFilmsPage />
+                    </Route>
+                    <Route path={Characters}>
+                        <StarWarsCharactersPage />
+                    </Route>
+                    <Route path={Vehicles}>
+                        <StarWarsVehicles />
+                    </Route>
+                </Switch>
+                <NavFooter />
+            </BrowserRouter>
         </ApolloProvider>
     );
 }
