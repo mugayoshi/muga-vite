@@ -1,28 +1,32 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
+import { AllFilms, AllFilmVariables } from '../schema/films';
 const allSWFilms = gql`
     {
         allFilms {
             films {
+                id
                 title
+                episodeID
             }
         }
     }
 `;
-interface StarWarsFilm {
-    title: string;
-}
+
 export function SWFilms(): JSX.Element {
-    const { loading, error, data } = useQuery(allSWFilms);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-    const films = data.allFilms.films as StarWarsFilm[];
+    const { loading, error, data } = useQuery<AllFilms, AllFilmVariables>(allSWFilms);
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+    if (error || !data) {
+        return <p>Error :(</p>;
+    }
     return (
         <>
-            {films.map(({ title }, i) => (
+            {data.allFilms.films.map(({ id, title, episodeID }, i) => (
                 <div key={i}>
                     <p>
-                        {i}: {title}
+                        {episodeID} {title}
                     </p>
                 </div>
             ))}
