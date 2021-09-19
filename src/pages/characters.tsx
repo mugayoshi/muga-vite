@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseContainer } from '../component/base/BaseContainer';
+import { BaseContainer } from '../components/base/BaseContainer';
 import { StarWarsCharactersList } from '../components/characters/StarWarsCharacterList';
 
 export const StarWarsCharactersPage: React.VFC = () => {

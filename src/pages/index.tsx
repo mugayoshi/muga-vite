@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseContainer } from '../component/base/BaseContainer';
+import { BaseContainer } from '../components/base/BaseContainer';
 
 export const RootPage: React.VFC = () => {
     return (
