@@ -1,5 +1,5 @@
 import React from 'react';
-import imgPath from '../assets/space.jpeg';
+import imgPath from '../assets/star-wars-backgrounds.jpeg';
 
 interface DefaultLayoutProps {
     children: React.ReactNode;
