@@ -5,6 +5,7 @@ import './App.css';
 import { NavFooter } from './components/global/NavFooter';
 import { NavHeader } from './components/global/NavHeader';
 import { SWPagePath } from './consts/PagePath';
+import { DefaultLayout } from './layout/default';
 import { RootPage } from './pages';
 import { StarWarsCharactersPage } from './pages/characters';
 import { StarWarsFilmsPage } from './pages/films';
@@ -16,28 +17,30 @@ const clientSW = new ApolloClient({
 });
 
 function App() {
-    const {Root, Films, Characters, Vehicles} = SWPagePath;
+    const { Root, Films, Characters, Vehicles } = SWPagePath;
     return (
-        <ApolloProvider client={clientSW}>
-            <BrowserRouter>
-                <NavHeader />
-                <Switch>
-                    <Route exact path={Root}>
-                        <RootPage />
-                    </Route>
-                    <Route path={Films}>
-                        <StarWarsFilmsPage />
-                    </Route>
-                    <Route path={Characters}>
-                        <StarWarsCharactersPage />
-                    </Route>
-                    <Route path={Vehicles}>
-                        <StarWarsVehicles />
-                    </Route>
-                </Switch>
-                <NavFooter />
-            </BrowserRouter>
-        </ApolloProvider>
+        <DefaultLayout>
+            <ApolloProvider client={clientSW}>
+                <BrowserRouter>
+                    <NavHeader />
+                    <Switch>
+                        <Route exact path={Root}>
+                            <RootPage />
+                        </Route>
+                        <Route path={Films}>
+                            <StarWarsFilmsPage />
+                        </Route>
+                        <Route path={Characters}>
+                            <StarWarsCharactersPage />
+                        </Route>
+                        <Route path={Vehicles}>
+                            <StarWarsVehicles />
+                        </Route>
+                    </Switch>
+                    <NavFooter />
+                </BrowserRouter>
+            </ApolloProvider>
+        </DefaultLayout>
     );
 }
 
