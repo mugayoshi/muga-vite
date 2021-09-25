@@ -3,6 +3,7 @@ import React from 'react';
 import { AllFilms, AllFilmVariables } from '../../schema/films';
 import '../../styles/star-wars.css';
 import { GQLLoading } from '../base/Loading';
+import { StarWarsFilmItem } from './StarWarsFilmItem';
 
 const allSWFilms = gql`
     {
@@ -11,6 +12,9 @@ const allSWFilms = gql`
                 id
                 title
                 episodeID
+                director
+                producers
+                releaseDate
             }
         }
     }
@@ -26,12 +30,15 @@ export function SWFilms(): JSX.Element {
     }
     return (
         <>
-            {data.allFilms.films.map(({ id, title, episodeID }, i) => (
-                <div key={i}>
-                    <p className='sw-opening-crawl'>
-                        {episodeID} {title}
-                    </p>
-                </div>
+            {data.allFilms.films.map(({ id, title, episodeID, director, releaseDate, producers }, i) => (
+                <StarWarsFilmItem
+                    key={i}
+                    director={director || ''}
+                    episodeID={episodeID || ''}
+                    title={title || ''}
+                    producers={producers || []}
+                    releaseDate={releaseDate || ''}
+                />
             ))}
         </>
     );
