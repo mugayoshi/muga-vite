@@ -1,6 +1,9 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
 import { AllFilms, AllFilmVariables } from '../../schema/films';
+import '../../styles/star-wars.css';
+import { GQLLoading } from '../base/Loading';
+
 const allSWFilms = gql`
     {
         allFilms {
@@ -16,16 +19,16 @@ const allSWFilms = gql`
 export function SWFilms(): JSX.Element {
     const { loading, error, data } = useQuery<AllFilms, AllFilmVariables>(allSWFilms);
     if (loading) {
-        return <p>Loading...</p>;
+        return <GQLLoading />;
     }
     if (error || !data) {
-        return <p>Error :(</p>;
+        return <p className='text-red-700'>Error :(</p>;
     }
     return (
         <>
             {data.allFilms.films.map(({ id, title, episodeID }, i) => (
                 <div key={i}>
-                    <p>
+                    <p className='sw-opening-crawl'>
                         {episodeID} {title}
                     </p>
                 </div>
